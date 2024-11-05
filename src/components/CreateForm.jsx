@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { createProduce } from '../utilities/controller.mjs';
 
-function CreateForm({ setToggle }) {
+function CreateForm({ setToggle, setInventory, inventory }) {
   const [formData, setFormData] = useState({
     name: '',
     price: '',
@@ -24,13 +24,10 @@ function CreateForm({ setToggle }) {
   }
 
   async function handleSubmit(e) {
-    let url = 'http://localhost:3000/api/produce';
-
     e.preventDefault();
-    formData.price = '$' + formData.price;
-    let res = await axios.post(url, formData);
-
-    console.log(res.data);
+    let res = await createProduce(formData);
+    setInventory([...inventory, res]);
+    setToggle(t => !t)
   }
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import ProductCategoryRow from './ProductCategoryRow';
 import ProductRow from './ProductRow';
 
-function ProductTable({ produce, searchParams, inStock }) {
+function ProductTable({ produce, searchParams, inStock, setInventory }) {
   // Array to store table rows
   let rows = [];
   let cat = null;
@@ -20,7 +20,7 @@ function ProductTable({ produce, searchParams, inStock }) {
       rows.push(<ProductCategoryRow category={el.category} />);
     }
 
-    rows.push(<ProductRow product={el} />);
+    rows.push(<ProductRow produce={produce} setInventory={setInventory} product={el} />);
   });
 
   return (
