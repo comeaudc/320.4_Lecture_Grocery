@@ -1,10 +1,21 @@
 import './App.css';
-import FilterableTable from './components/FilterableTable';
+import { Routes, Route } from 'react-router-dom';
+import FilterableTable from './pages/FilterableTable';
+import NotFound from './pages/NotFound';
+import CreateForm from './pages/CreateForm';
+import UpdateForm from './pages/UpdateForm';
+import Nav from './components/Nav';
 
 function App() {
   return (
     <main>
-      <FilterableTable />
+      <Nav />
+      <Routes>
+        <Route path='/' element={<FilterableTable />} />
+        <Route path='/addProduce' element={<CreateForm />} />
+        <Route path='/updateProduce/:id' element={<UpdateForm />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
     </main>
   );
 }
