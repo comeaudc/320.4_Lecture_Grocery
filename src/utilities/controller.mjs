@@ -42,13 +42,32 @@ async function updateProduce(id, formData) {
   try {
     let url = `http://localhost:3000/api/produce/${id}`;
 
+    formData.price = '$' + formData.price;
+
     let res = await axios.put(url, formData);
 
     return res.data;
-    
   } catch (err) {
     console.error(err);
   }
 }
 
-export { getInventory, createProduce, deleteProduce, updateProduce };
+async function findOneProduce(id) {
+  try {
+    let url = `http://localhost:3000/api/produce/${id}`;
+
+    let res = await axios.get(url);
+
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export {
+  getInventory,
+  createProduce,
+  deleteProduce,
+  updateProduce,
+  findOneProduce,
+};
